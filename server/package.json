@@ -1,0 +1,28 @@
+{
+  "name": "project-faccination",
+  "version": "1.0.0",
+  "description": "Auth 0 Hackathon ",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chinmay-KB/project-faccination.git"
+  },
+  "keywords": [
+    "Safety",
+    "Browser",
+    "Extension"
+  ],
+  "author": "DesignrKnight, PraisySam, Chinmay-KB",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chinmay-KB/project-faccination/issues"
+  },
+  "homepage": "https://github.com/Chinmay-KB/project-faccination#readme",
+  "dependencies": {
+    "psl": "^1.8.0",
+    "puppeteer": "^5.2.1"
+  }
+}
