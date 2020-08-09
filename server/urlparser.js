@@ -13,5 +13,6 @@ const urlparser = (url)=>{
     if(tldjs.parse(url).isIp){
         console.log(`You are visiting an IP Address directly instead of a domain`)
     }
+    console.log(tldjs.parse(url))
 }
-urlparser("192.168.1.0")
+urlparser("https://mail.google.com/mail")
