@@ -23,8 +23,10 @@
   "homepage": "https://github.com/Chinmay-KB/project-faccination#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
+    "extract-domain": "^2.2.1",
     "node-fetch": "^2.6.0",
     "psl": "^1.8.0",
-    "puppeteer": "^5.2.1"
+    "puppeteer": "^5.2.1",
+    "tldjs": "^2.3.1"
   }
 }
