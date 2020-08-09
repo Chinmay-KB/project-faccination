@@ -6,7 +6,7 @@ const webScreenshot = async (fileName) => {
   await page.goto('https://www.timeanddate.com/worldclock/india',{timeout: 0});
   for(seconds=0;seconds<10;seconds++){
     await page.waitFor(1000)
-    await page.screenshot({path: `\screenshot_cluster\\${fileName}_${seconds}.png`});
+    await page.screenshot({path: `screenshot_cluster\\${fileName}_${seconds}.png`});
   }
   await browser.close();
 }
