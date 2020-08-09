@@ -22,7 +22,16 @@
   },
   "homepage": "https://github.com/Chinmay-KB/project-faccination#readme",
   "dependencies": {
+    "@google-cloud/vision": "^2.1.1",
+    "domino": "^2.1.6",
+    "dotenv": "^8.2.0",
+    "extract-domain": "^2.2.1",
+    "follow-redirects": "^1.12.1",
+    "node-fetch": "^2.6.0",
+    "page-metadata-parser": "^1.1.4",
     "psl": "^1.8.0",
-    "puppeteer": "^5.2.1"
+    "puppeteer": "^5.2.1",
+    "string-similarity": "^4.0.2",
+    "tldjs": "^2.3.1"
   }
 }

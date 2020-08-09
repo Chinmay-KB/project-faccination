@@ -1,13 +1,18 @@
-const puppeteer = require('puppeteer');
+const fetch = require('node-fetch');
+require('dotenv').config()
 
-const webScreenshot = async (fileName) => {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto('https://www.timeanddate.com/worldclock/india',{timeout: 0});
-  for(seconds=0;seconds<10;seconds++){
-    await page.waitFor(1000)
-    await page.screenshot({path: `screenshot_cluster\\${fileName}_${seconds}.png`});
-  }
-  await browser.close();
+isDuplicateURL=null
+
+const Lookup = async (url) => {
+    fetch('https://authhack.cognitiveservices.azure.com/bing/v7.0/entities?mkt=en-US&q=google.co',
+    { headers: { 'Ocp-Apim-Subscription-Key': process.env.OcpApimSubscriptionKey } })
+    .then(res => res.json())
+    .then(json => {
+        if(typeof(json.queryContext.alteredQuery)!=='undefined')
+        {
+            isDuplicateURL=json.queryContext.alteredQuery
+        }
+
+    });
+
 }
-webScreenshot("FileA")

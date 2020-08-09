@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import LoginButton from './loginbutton';
+import SearchBar from "material-ui-search-bar";
 
 function App() {
   return (
@@ -21,8 +22,12 @@ function App() {
         </a>
       </header>
       <LoginButton/>
+      <SearchBar
+    value={this.state.value}
+    onChange={(newValue) => console.log("onChange")}
+    onRequestSearch={() => console.log("onRequest")}
+  />
     </div>
   );
 }
-
 export default App;
