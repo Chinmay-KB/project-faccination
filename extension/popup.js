@@ -48,16 +48,16 @@ function getData(queryUrl) {
                 domainName.innerHTML = data.info.domain;
                 domainDetails.innerHTML = data.Searchinfo.description;
 
-                // if (select < 60) {
-                //     statusBox.style.background = "#ff5252";
+                if (select < 60) {
+                    statusBox.style.background = "#ff5252";
 
-                // }
-                // if (select > 60 && select <= 80) {
-                //     statusBox.style.background = "#26a69a"
-                // }
-                // if (select > 80) {
-                //     statusBox.style.background = "#ff9100"
-                // }
+                }
+                if (select > 60 && select <= 80) {
+                    statusBox.style.background = "#ff9100";
+                }
+                if (select > 80) {
+                    statusBox.style.background = "#26a69a";
+                }
             }
             // });
 
