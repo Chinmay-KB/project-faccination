@@ -12,7 +12,6 @@ const Lookup = async (url) => {
         {
             isDuplicateURL=json.queryContext.alteredQuery
         }
-
     });
 
 }

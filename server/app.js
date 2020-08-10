@@ -26,15 +26,34 @@ const searchURLbyDomain = async(url) => {
     fetchedURL=await fetch(`https://authhack.cognitiveservices.azure.com/bing/v7.0/entities?mkt=en-US&q=${tldjs.parse(metadata.url).hostname}`, { headers: { 'Ocp-Apim-Subscription-Key': process.env.OcpApimSubscriptionKey } })
     .then(res => res.json())
     .then(json => {
-        return json.entities.value[0].url?json.entities.value[0].url:undefined
+        let obj=new Object();
+        obj.url=json.entities.value[0].url?json.entities.value[0].url:undefined
+        obj.description=json.entities.value[0].description?json.entities.value[0].description:undefined
+        return obj
     })
     .catch(err=>console.log(err));
-    var similarity = stringSimilarity.compareTwoStrings(fetchedURL, metadata.url);
-    return similarity
+    var similarity = stringSimilarity.compareTwoStrings(tldjs.parse(fetchedURL.url).hostname, tldjs.parse(metadata.url).hostname);
+    let obj=new Object();
+    obj.similarity=similarity
+    obj.description=fetchedURL.description
+    return obj
 }
 app.use(express.static('./screenshot_cluster')); //Serves resources from public folder
 app.get('/urlstatus',(req,res)=>{
-    searchURLbyDomain(req.query.url).then(param=>res.send(`Got GET with similarity ${param}`))
+    let obj=new Object();
+    if(tldjs.parse(req.query.ur).isIp){
+        obj.isIP=true
+        res.send(obj)
+        return
+    }
+    hostname=tldjs.parse(req.query.url).hostname
+    searchURLbyDomain(`http://${hostname}`).then(param=>{
+        obj.Searchinfo=param
+        obj.info=tldjs.parse(req.query.url)
+        res.send(obj)})
+        .catch(param=>{
+            obj.error="Errored"
+            res.send(obj)});
 })
 
 app.listen(80, () => {
