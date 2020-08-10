@@ -20,7 +20,7 @@ export default function App() {
   const onSubmit =async data => {
     if(isAuthenticated){
       console.log(data);  
-      await fetch(`http://159.89.172.222/urlstatus?url=${data.exampleRequired}`)
+      await fetch(`http://159.89.172.222/urlpic?url=${data.exampleRequired}`)
       .then(response => response.json())
       .then(data=>{
         for(let i=0;i<5;i++){
