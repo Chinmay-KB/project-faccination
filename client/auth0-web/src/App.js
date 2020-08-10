@@ -20,11 +20,11 @@ export default function App() {
   const onSubmit =async data => {
     if(isAuthenticated){
       console.log(data);  
-      await fetch(`http://159.89.172.222/urlpic?url=${data.exampleRequired}`)
+      await fetch(`https://antifraudvaccine.tech/urlpic?url=${data.exampleRequired}`)
       .then(response => response.json())
       .then(data=>{
         for(let i=0;i<5;i++){
-          IMAGES.push(`http://159.89.172.222/${data.filename}_desktop${i}.png`)
+          IMAGES.push(`https://antifraudvaccine.tech/${data.filename}_desktop${i}.png`)
         }
         setstatus(true)
       })
