@@ -1,5 +1,7 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
+var cors = require('cors');
+
 const schema = require('./schema/schema');
 const {getMetadata} = require('page-metadata-parser');
 const domino = require('domino');
@@ -11,6 +13,8 @@ const puppeteer = require('puppeteer');
 const { v4: uuidv4 } = require('uuid');
 
 const app = express();
+app.use(cors());
+
 
 // bind express with graphql
 app.use('/graphql', graphqlHTTP({
