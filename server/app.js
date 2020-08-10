@@ -1,5 +1,6 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
+
 const schema = require('./schema/schema');
 const {getMetadata} = require('page-metadata-parser');
 const domino = require('domino');
@@ -7,14 +8,37 @@ const fetch = require("node-fetch");
 var stringSimilarity = require('string-similarity');
 const tldjs = require('tldjs');
 require('dotenv').config()
+const puppeteer = require('puppeteer');
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
+
 
 // bind express with graphql
 app.use('/graphql', graphqlHTTP({
     schema,
     graphiql: true
 }));
+
+
+const webScreenshot = async (url,isMobile) => {
+    fileName=uuidv4()
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setViewport({
+      width: isMobile?1080:1920,
+      height: isMobile?1920:1080,
+      isMobile: isMobile,
+      deviceScaleFactor: 1,
+    });
+    await page.goto(url,{timeout: 0});
+    for(seconds=0;seconds<5;seconds++){
+      await page.waitFor(1000)
+      await page.screenshot({path: `\screenshot_cluster\\${fileName}_${isMobile?"mobile":"desktop"}${seconds}.png`});
+    }
+    await browser.close();
+    return fileName
+  }
 
 
 const searchURLbyDomain = async(url) => {
@@ -55,7 +79,17 @@ app.get('/urlstatus',(req,res)=>{
             obj.error="Errored"
             res.send(obj)});
 })
+app.get('/urlpic',(req,res)=>{
+    let obj=new Object();
+    url=req.query.url
+    webScreenshot(url,false).then(param=>{
+        obj.filename=param
+        res.send(obj)})
+        .catch(param=>{
+            obj.error="Errored"
+            res.send(obj)});
+})
 
-app.listen(80, () => {
-    console.log('now listening for requests on port 80');
+app.listen(5000, () => {
+    console.log('now listening for requests on port 5000');
 });
