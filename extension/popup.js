@@ -7,4 +7,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, false);
 
+    var changeColorButton = document.getElementById('changeColor');
+    changeColorButton.addEventListener('click', function() {
+
+        chrome.runtime.sendMessage({ greeting: "changeBkgCol" });
+    });
+
 }, false);
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    var statusBox = document.getElementById('topContainer');
+    if (request.greeting === "bkg_red")
+        statusBox.style.background = "#ff5252";
+    if (request.greeting === "bkg_green")
+        statusBox.style.background = "#26a69a"
+    if (request.greeting === "bkg_orange") statusBox.style.background = "#ff9100"
+
+
+});

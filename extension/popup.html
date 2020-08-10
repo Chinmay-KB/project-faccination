@@ -4,11 +4,53 @@
 <head>
     <title>Faccination</title>
     <script src="popup.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+    <style>
+        body {
+            width: 400px;
+            height: 300px;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 
 <body>
+    <div id="topContainer" style="width:400px;height: 100px;background-color: #5c6bc0 ;margin: 0; ">
+        <div id="detailsColumn" style="padding: 8px;">
+            <div id="extensionTitle" style="margin: 0;">
+                <h1 style="color:white;font-size:20px;margin: 0;">project-faccination</h1>
+            </div>
+            <div style="margin-top: 12px;">
+                <h2 id="securityStatus" style="color:white;font-size:12px;margin: 0;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">Not Safe</h2>
+            </div>
+            <div id="extensionTitle" style="margin: 0;">
+                <h2 id="score" style="color:white;font-size:15px;margin: 0;">Score-90</h2>
+            </div>
+        </div>
+    </div>
+    <div style="padding: 8px;">
+        <div class="w3-panel w3-card-2">
+            <h4 id="domainName" style="font-size: 12px;">Domain is google.com</h4>
+            <h4 id="domainDetails" style="font-size: 12px;">The Lookup API lets your client applications send requests to the Safe Browsing servers to check if URLs are included on any of the Safe Browsing lists. If a URL is found on one or more lists, the matching information is returned.</h4>
 
-    <button id="checkPage">Check this out now!</button>
+        </div>
+        <div class="w3-panel w3-card-2">
+            <h4 id="subdomainName" style="font-size: 12px;">Subdomain is google.com</h4>
+            <h4 id="subdomainDetails" style="font-size: 12px;">The Lookup API lets your client applications send requests to the Safe Browsing servers to check if URLs are included on any of the Safe Browsing lists. If a URL is found on one or more lists, the matching information is returned.</h4>
+        </div>
+        <!-- 
+        <button id="checkPage">
+            Fetch Details
+        </button> -->
+
+        <button id="changeColor" style="border:none;display: inline-block;background-color:#5c6bc0;border-radius: 4px;color: white;padding:4px;float: right;margin-bottom: 8px;">
+            Know More
+        </button>
+    </div>
 </body>
+
 
 </html>

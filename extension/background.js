@@ -13,6 +13,15 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             chrome.browserAction.setIcon({ path: riskIcon });
         else chrome.browserAction.setIcon({ path: stopIcon });
 
+    } else if (request.greeting === "changeBkgCol") {
+        let select = getRandomInt(0, 2);
+        if (select == 0)
+            chrome.runtime.sendMessage({ greeting: "bkg_red" });
+        if (select == 1)
+            chrome.runtime.sendMessage({ greeting: "bkg_green" });
+        if (select == 2)
+            chrome.runtime.sendMessage({ greeting: "bkg_orange" });
+
     }
 });
 
@@ -26,13 +35,15 @@ function getData() {
     fetch('https://metaphysics-staging.artsy.net/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query: `{
+            body: JSON.stringify({
+                query: `{
                 popular_artists {
                   artists {
                     name
                   }
                 }
-              }` }),
+              }`
+            }),
         })
         .then(res => res.json())
         .then(data => alert(data.extensions.requestID));
