@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     // s
 
-    var changeColorButton = document.getElementById('changeColor');
-    changeColorButton.addEventListener('click', function() {
-        chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
-            chrome.runtime.sendMessage({ greeting: "GetURL", sentData: String(tabs[0].url) });
+    // var changeColorButton = document.getElementById('changeColor');
+    // changeColorButton.addEventListener('click', function() {
+    //     chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
+    //         chrome.runtime.sendMessage({ greeting: "GetURL", sentData: String(tabs[0].url) });
 
-        });
-        chrome.runtime.sendMessage({ greeting: "changeBkgCol" });
-    });
+    //     });
+    //     chrome.runtime.sendMessage({ greeting: "changeBkgCol" });
+    // });
 
 }, false);
 
@@ -25,7 +25,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
     //chrome.runtime.sendMessage({ greeting: "GetURL", sentData: String(tabs[0].url) });
-    var queryUrl = "http://localhost/urlstatus?url=" + String(tabs[0].url);
+    var queryUrl = "http://159.89.172.222/urlstatus?url=" + String(tabs[0].url);
 
     getData(queryUrl);
 
@@ -36,6 +36,9 @@ function getData(queryUrl) {
         .then(res => res.json())
         .then(data => {
             if ("error" in data) {
+                var securityScore = document.getElementById('score');
+                var domainName = document.getElementById('domainName');
+                var domainDetails = document.getElementById('domainDetails');
 
             } else {
                 var statusBox = document.getElementById('topContainer');

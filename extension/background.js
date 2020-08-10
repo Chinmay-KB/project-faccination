@@ -4,15 +4,8 @@ const stopIcon = 'icons/stop.png';
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.greeting === "GetURL") {
         var tabURL = request.sentData;
-        //alert(tabURL);
-        var queryUrl = "http://localhost/urlstatus?url=" + tabURL;
+        var queryUrl = "http://159.89.172.222/urlstatus?url=" + tabURL;
         getData(queryUrl);
-        let select = getRandomInt(0, 2);
-        if (select == 0)
-            chrome.browserAction.setIcon({ path: safeIcon });
-        else if (select == 1)
-            chrome.browserAction.setIcon({ path: riskIcon });
-        else chrome.browserAction.setIcon({ path: stopIcon });
 
     } else if (request.greeting === "changeBkgCol") {
         let select = getRandomInt(0, 2);
@@ -34,7 +27,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         }, function(tabs) {
             var tab = tabs[0];
             var url = tab.url;
-            var queryUrl = "http://localhost/urlstatus?url=" + url;
+            var queryUrl = "http://159.89.172.222/urlstatus?url=" + url;
             getData(queryUrl);
         });
         // do your things
