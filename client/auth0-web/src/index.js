@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Auth0Provider } from "@auth0/auth0-react";
-
+import Profile from './profile';
 
 ReactDOM.render(
   <Auth0Provider
@@ -13,7 +13,19 @@ ReactDOM.render(
     redirectUri={window.location.origin}
   >
   <React.StrictMode>
+  <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <row>
+        <Profile/>
     <App />
+        </row>
+
+    </div>
   </React.StrictMode>
   </Auth0Provider>,
   document.getElementById('root')

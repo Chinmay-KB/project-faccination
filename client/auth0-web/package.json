@@ -8,8 +8,11 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "material-ui-search-bar": "^1.0.0",
+    "md5": "^2.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-grid-gallery": "^0.5.5",
+    "react-hook-form": "^6.3.1",
     "react-scripts": "3.4.1"
   },
   "scripts": {
