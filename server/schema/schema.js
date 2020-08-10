@@ -1,7 +1,7 @@
 const graphql = require('graphql');
 const _ = require('lodash');
-
-const { GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql;
+const searchURLbyDomain = require('../visionapi');
+const { GraphQLInt,GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql;
 
 // dummy data
 var websites = [
@@ -13,8 +13,7 @@ var websites = [
 const websiteType = new GraphQLObjectType({
     name: 'website',
     fields: ( ) => ({
-        id: { type: GraphQLString },
-        name: { type: GraphQLString },
+        similarityFactor:{type:GraphQLString},
         url: { type: GraphQLString }
     })
 });
@@ -27,7 +26,8 @@ const RootQuery = new GraphQLObjectType({
             args: { url: { type: GraphQLString } },
             resolve(parent, args){
                 // code to get data from db / other source
-                return _.find(websites, { url: args.url });
+                //similarity=searchURLbyDomain('http://www.nitkl.in').then(res=>{return res})
+                return "Abel"
             }
         }
     }

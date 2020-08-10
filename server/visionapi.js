@@ -19,8 +19,7 @@ const searchURLbyDomain = async(url) => {
     })
     .catch(err=>console.log(err));
     var similarity = stringSimilarity.compareTwoStrings(fetchedURL, metadata.url);
-    console.log(similarity)
-    return "Abel"
+    return similarity
 }
 
 const visionAPI = async (fileURL) => {
@@ -32,4 +31,4 @@ const visionAPI = async (fileURL) => {
     //console.log(metadata)
 }
 //visionAPI('./screenshot_cluster/Screenshot (2211).png')
-searchURLbyDomain('http://www.nitkl.in').then(res=>console.log(res))
+//export searchURLbyDomain('http://www.nitkl.in')
