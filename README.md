@@ -27,4 +27,4 @@ The web app is not yet on cloud server, so we have to sideload it.
 * Navigate to cloned folder -> client/auth0-web
 * npm install
 * npm run start
-* API will be available at localhost with port 3000.
+* App will be available at localhost with port 3000.
