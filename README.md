@@ -2,6 +2,10 @@
 ##### Vaccination against fake websites
 &NewLine;
 
+## Auth0 Hackathon Submission
+[GitHub Release](https://github.com/Chinmay-KB/project-faccination/releases/tag/Auth0Hack)
+There has been further edits to the repo as we are continually working on making it robust. The above release was submitted at Auth0 Hackathon. The latest master branch commit is the final version of our code in development.
+
 ### Tech Stack
 * Auth0
 * Digital Ocean
