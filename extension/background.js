@@ -5,7 +5,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.greeting === "GetURL") {
         var tabURL = request.sentData;
         //alert(tabURL);
-        getData();
+        var queryUrl = "http://localhost/urlstatus?url=" + tabURL;
+        getData(queryUrl);
         let select = getRandomInt(0, 2);
         if (select == 0)
             chrome.browserAction.setIcon({ path: safeIcon });
@@ -25,32 +26,50 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     }
 });
 
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    if (changeInfo.status == 'complete') {
+        chrome.tabs.query({
+            active: true,
+            currentWindow: true
+        }, function(tabs) {
+            var tab = tabs[0];
+            var url = tab.url;
+            var queryUrl = "http://localhost/urlstatus?url=" + url;
+            getData(queryUrl);
+        });
+        // do your things
+
+    }
+})
+
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function getData() {
-    fetch('https://metaphysics-staging.artsy.net/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                query: `{
-                popular_artists {
-                  artists {
-                    name
-                  }
-                }
-              }`
-            }),
-        })
+function getData(queryUrl) {
+    fetch(new URL(queryUrl))
         .then(res => res.json())
-        .then(data => alert(data.extensions.requestID));
+        .then(data => {
+            if ("error" in data) {
 
-}
+            } else {
+                var select = data.Searchinfo.similarity * 100;
+                if (select < 60) {
+                    chrome.runtime.sendMessage({ greeting: "bkg_red" });
+                    chrome.browserAction.setIcon({ path: stopIcon });
+                }
+                if (select > 60 && select <= 80) {
+                    chrome.browserAction.setIcon({ path: riskIcon });
+                    chrome.runtime.sendMessage({ greeting: "bkg_orange" });
+                }
+                if (select > 80) {
+                    chrome.runtime.sendMessage({ greeting: "bkg_green" });
+                    chrome.browserAction.setIcon({ path: safeIcon });
+                }
+            }
+            // });
 
-function parsemessage(res) {
-    //const obj = JSON.parse(res.json());
-    alert(res.status);
+        });
 }
