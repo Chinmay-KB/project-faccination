@@ -14,3 +14,17 @@ The extension is not yet available on the Chrome web store, so we have to sidelo
 * Enable Developer Mode
 * Click on Load Unpacked Extensions
 * Navigate to `project-faccination/extension` and click OK.
+
+The server is not yet on cloud server, so we have to sideload it.
+* Clone this repository `git clone https://github.com/Chinmay-KB/project-faccination.git`
+* Navigate to cloned folder -> server
+* npm install
+* node app.js
+* API will be available at localhost with port 80.
+
+The web app is not yet on cloud server, so we have to sideload it.
+* Clone this repository `git clone https://github.com/Chinmay-KB/project-faccination.git`
+* Navigate to cloned folder -> client/auth0-web
+* npm install
+* npm run start
+* API will be available at localhost with port 3000.
