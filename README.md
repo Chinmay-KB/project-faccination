@@ -3,10 +3,10 @@
 &NewLine;
 
 ### Tech Stack
-*Auth0
-*Digital Ocean
-*Azure Services
-*Node.js
+* Auth0
+* Digital Ocean
+* Azure Services
+* Node.js
 
 ### What is project-faccination about?
 This project, built at Auth0 hackathon, is an attempt at making a nifty service with a chromium based browser extension, a webapp and some apis at informing the user about the safety of the website a user is viewing. We are using an npm package [page-data-parser](https://www.npmjs.com/package/page-metadata-parser) to find out simple metadata like domain, subdomain etc of a page and then use [Bing Entity Search](https://azure.microsoft.com/en-in/services/cognitive-services/bing-entity-search-api/) to establish the validity of the domain to its content.
