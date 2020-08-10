@@ -1,11 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var checkPageButton = document.getElementById('checkPage');
-    checkPageButton.addEventListener('click', function() {
-        chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
-            chrome.runtime.sendMessage({ greeting: "GetURL", sentData: String(tabs[0].url) });
-
-        });
-    }, false);
+    // s
 
     var changeColorButton = document.getElementById('changeColor');
     changeColorButton.addEventListener('click', function() {
@@ -29,15 +23,13 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 });
 
-function onLoaded() {
-    chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
-        //chrome.runtime.sendMessage({ greeting: "GetURL", sentData: String(tabs[0].url) });
-        var queryUrl = "http://localhost/urlstatus?url=" + String(tabs[0].url);
+chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
+    //chrome.runtime.sendMessage({ greeting: "GetURL", sentData: String(tabs[0].url) });
+    var queryUrl = "http://localhost/urlstatus?url=" + String(tabs[0].url);
 
-        getData(queryUrl);
+    getData(queryUrl);
 
-    });
-}
+});
 
 function getData(queryUrl) {
     fetch(new URL(queryUrl))
@@ -47,18 +39,25 @@ function getData(queryUrl) {
 
             } else {
                 var statusBox = document.getElementById('topContainer');
-
+                var securityScore = document.getElementById('score');
+                var domainName = document.getElementById('domainName');
+                var domainDetails = document.getElementById('domainDetails');
                 var select = data.Searchinfo.similarity * 100;
-                if (select < 60) {
-                    statusBox.style.background = "#ff5252";
 
-                }
-                if (select > 60 && select <= 80) {
-                    statusBox.style.background = "#26a69a"
-                }
-                if (select > 80) {
-                    statusBox.style.background = "#ff9100"
-                }
+                securityScore.innerHTML = "Score-" + select;
+                domainName.innerHTML = data.info.domain;
+                domainDetails.innerHTML = data.Searchinfo.description;
+
+                // if (select < 60) {
+                //     statusBox.style.background = "#ff5252";
+
+                // }
+                // if (select > 60 && select <= 80) {
+                //     statusBox.style.background = "#26a69a"
+                // }
+                // if (select > 80) {
+                //     statusBox.style.background = "#ff9100"
+                // }
             }
             // });
 
