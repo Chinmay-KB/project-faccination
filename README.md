@@ -7,6 +7,9 @@
 
 There has been further edits to the repo as we are continually working on making it robust. The above release was submitted at Auth0 Hackathon. The latest master branch commit is the final version of our code in development.
 
+### This project won!!
+project-faccination won the 4th position in the [Auth0 Hackathon](https://auth0.devpost.com) . You can view our submissions [here](https://devpost.com/software/anti-fraud-vaccine)
+
 ### Tech Stack
 * Auth0
 * Digital Ocean
